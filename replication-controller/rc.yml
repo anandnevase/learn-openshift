@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+    name: hello-rc
+spec: # rc spec
+  replicas: 3
+  selector:
+      app: hello
+  template: # Pod Spec
+    metadata:
+      name: hello
+      labels:
+        app: hello
+    spec:
+      containers:
+        - name: hello
+          image: openshift/hello-openshift
+          ports:
+            - containerPort: 8080

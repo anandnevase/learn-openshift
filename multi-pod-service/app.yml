@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+spec:
+  containers:
+    - name: poller
+      image: lrakai/microservices:poller-v1
+      env:
+        - name: API_URL
+          # <service_name>:<service_port>
+          # note api-server is used as API_SERVER
+          value: api-server:$(API_SERVER_SERVICE_PORT) 
+    - name: counter
+      image: lrakai/microservices:counter-v1
+      env:
+        - name: API_URL
+          # <service_name>.<service_project>: <service_port>
+          # <service_project> is used when POD running on different PRoject/Namespace
+          value: api-server.multi-pod-service:$(API_SERVER_SERVICE_PORT) 
