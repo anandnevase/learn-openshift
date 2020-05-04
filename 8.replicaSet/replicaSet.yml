@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: hello-rs
+spec:
+  replicas: 2
+  selector:
+    matchLabels: 
+      app: hello
+    matchExpressions:
+      - key: tier
+        operator: In
+        values: [backend]
+  template:
+    metadata:
+      name: hello-pod
+      labels:
+        app: hello
+        tier: backend
+    spec:
+      containers:
+        - name: hello
+          image: nginx
+          ports:
+            - containerPort:  80
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    'app': 'hello'

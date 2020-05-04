@@ -17,3 +17,5 @@ spec: # rc spec
           image: openshift/hello-openshift
           ports:
             - containerPort: 8080
+
+
