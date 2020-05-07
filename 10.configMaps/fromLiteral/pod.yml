@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: color-app
+  labels:
+    app: color-app
+spec:
+  containers:
+    - name: color-app
+      image: anandnevase/color-app
+      ports:
+        - containerPort: 8080
+      envFrom:
+        - configMapRef:
+            name: color-config-map
