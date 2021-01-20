@@ -1,7 +1,7 @@
 ## Deploy single pod on Openshift/k8s using oc run
 
 ### 1. login to cluster
-```bash
+```powershell
 # Use Katacode playgroud
 # https://www.katacoda.com/openshift/courses/playgrounds/openshift311 
 $ oc login -u developer -p developer  2886795277-8443-host18nc.environments.katacoda.com
